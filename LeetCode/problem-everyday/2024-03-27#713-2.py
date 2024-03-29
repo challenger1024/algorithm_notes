@@ -1,18 +1,21 @@
 #713#Subarray Product Less Than K 
+#PrefixSum and dichotomous answers
 #accept code
 #start
+import math
+import bisect
 class Solution:
 	def numSubarrayProductLessThanK(self, nums, k: int) -> int:
 		if k==0:return 0
+		n=len(nums)
 		ans=0
-		x=1
-		i=0
-		for j,num in enumerate(nums):
-			x*=num
-			while i<=j and x>=k:
-				x//=nums[i]
-				i+=1
-			ans+=j-i+1
+		k=math.log(k)
+		pre=[0 for _ in range(n+1)]
+		for i in range(n):
+			pre[i+1]=pre[i]+math.log(nums[i])
+		for right in range(1,n+1):
+			left=bisect.bisect_right(pre,pre[right]-k+1e-10,0,right)
+			ans+=right-left
 		return ans
 #end
 
@@ -21,19 +24,3 @@ s=Solution()
 nums = [10,5,2,6] 
 k = 100
 print(s.numSubarrayProductLessThanK(nums,k))
-
-#Solution
-'''Simple sliding window:
-class Solution:
-	def numSubarrayProductLessThanK(self, nums, k: int) -> int:
-		if k==0:return 0
-		ans=0
-		x=1#record the product of the interval [i,j]
-		i=0
-		for j,num in enumerate(nums):
-			x*=num#interval to right
-			while i<=j and x>=k:
-				x//=nums[i]
-				i+=1#i to right
-			ans+=j-i+1#find the result of the [i,j],acculate the num of subarray
-		return ans'''
