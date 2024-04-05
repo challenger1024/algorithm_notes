@@ -19,3 +19,7 @@ so=Solution()
 s = "aaaa"
 #s = "bcbbbcba"
 print(so.maximumLengthSubstring(s))
+#solution
+'''
+滑动窗口
+'''
