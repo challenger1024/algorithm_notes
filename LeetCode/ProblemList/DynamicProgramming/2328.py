@@ -1,3 +1,4 @@
+mod=10**9+7
 class Solution:
 	def countPaths(self, grid: List[List[int]]) -> int:
 		m,n=len(grid),len(grid[0])
@@ -14,6 +15,13 @@ class Solution:
 			for k in range(4):
 				di,dj=i+dirs[k],j+dirs[k+1]
 				if 0<=di<m and 0<=dj<n and v>grid[di][dj]:
-					dp[i][j]=max(dp[i][j],dp[di][dj]+1)
-			ans=max(ans,dp[i][j])
-		return ans
+					dp[i][j]+=dp[di][dj]
+			ans+=dp[i][j]
+		return ans%mod
+
+
+
+#Solution
+'''
+dp[i][j]位置的路径数量=四个方向上递增路径的长度的和+1。
+'''
