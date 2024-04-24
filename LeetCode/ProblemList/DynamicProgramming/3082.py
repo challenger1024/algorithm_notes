@@ -1,7 +1,16 @@
 mod=10**9+7
 class Solution:
 	def sumOfPower(self, nums: List[int], k: int) -> int:
+		n=len(nums)
+		dp=[[0]*(k+1) for _ in range(n+1)]
+		dp[0][0]=1
+		for i , num in enumerate(nums):
+			for j in range(i,-1,-1):
+				for x in range(k,nums[j]-1,-1):
+					dp[j][x]=dp[j-1][x-nums[j]]+1
+		ans=0
 		
+
 
 
 #solution
