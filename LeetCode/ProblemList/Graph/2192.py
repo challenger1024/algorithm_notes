@@ -1,3 +1,4 @@
+#拓扑排序
 from collections import deque
 class Solution:
 	def getAncestors(self, n: int, edges):# -> List[List[int]]:
