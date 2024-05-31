@@ -1,3 +1,4 @@
+#闭区间二分
 class Solution:
 	def calc(self,nums,x):
 		ans=0
