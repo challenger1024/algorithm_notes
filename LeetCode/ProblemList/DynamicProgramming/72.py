@@ -17,3 +17,10 @@ class Solution:
 					lu-=1
 				dp[i+1][j+1]=min(u,l,lu)
 		return dp[m][n]
+
+#solution
+'''
+动态规划
+设数组dp[i][j]为使word1中的i个字符和word2的j个字符变的一样的操作次数；
+
+'''

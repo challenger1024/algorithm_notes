@@ -1,4 +1,4 @@
-#O(N)时间复杂度求最长回文子串
+#求最长回文子串，时间复杂度O(N)
 class Solution:
 	def extend(self,s,left,right):
 		n=len(s)
@@ -28,7 +28,7 @@ class Solution:
 				end=i+arm
 		return s[start+1:end+1:2]
 
-#solution
+ #solution
 '''
 使用Manacher算法找最长的回文字符串
 拿到一个字符串

@@ -21,6 +21,6 @@ heappop(big_heap)
 #print(big_heap)
 
 nums=[3,2,1,4,5,6,9,8,7]
-#用heapify将一个列表转化成小跟堆，需要限行时间复杂度
+#用heapify将一个列表转化成小跟堆，需要线性时间复杂度
 heapify(nums)
 print(nums)

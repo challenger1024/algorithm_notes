@@ -7,3 +7,4 @@ class Solution:
 			pre=max(pre+nums[i],nums[i])
 			ans=max(ans,pre)
 		return ans
+
