@@ -1,0 +1,35 @@
+from collections import deque
+class Solution:
+	def clearStars(self, s: str) -> str:
+		data={i:deque([])  for i in 'qwertyuiopasdfghjklzxcvbnm'}
+		for i,c in enumerate(s):
+			if c!='*':
+				data[c].append(i)
+			else:
+				for c in 'abcdefghijklmnopqrstuvwxyz':
+					if len(data[c])>0:
+						data[c].pop()
+						break
+#合成最终的字符串
+		ans=[]
+		while data:
+			now=''
+			idx=len(s)
+			for c in 'abcdefghijklmnopqrstuvwxyz':
+				if c in data:
+					if data[c] and data[c][0]<idx:
+						now=c
+						idx=data[c][0]
+				if c in data and len(data[c])==0:
+					del(data[c])
+			ans.append(now)
+			if now!='':
+				data[now].popleft()
+		return ''.join(ans)
+
+#test entry
+so=Solution()
+#s = "abc"
+#s = "aaba*"
+s='abc**'
+print(so.clearStars(s))

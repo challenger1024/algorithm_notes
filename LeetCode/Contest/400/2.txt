@@ -1,0 +1,22 @@
+class Solution:
+	def countDays(self, days: int, meetings) -> int:
+		meetings.sort()
+#		print(meetings)
+		ans=meetings[0][0]-1
+		pre=meetings[0][1]
+		for (start,end) in meetings[1:]:
+			if start-pre>1:
+				ans+=start-pre-1
+			pre=max(end,pre)
+		if days-pre>=1:
+			ans+=days-pre
+		return ans
+
+#test entry
+s=Solution()
+days = 10
+meetings = [[5,7],[1,3],[9,10]]
+
+#days = 6meetings = [[1,6]]
+#days = 5meetings = [[2,4],[1,3]]
+print(s.countDays(days,meetings))
