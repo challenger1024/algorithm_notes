@@ -1,0 +1,29 @@
+from collections import Counter
+class Solution:
+	def findWinningPlayer(self, skills, k: int) -> int:
+		cnt=Counter([])
+		for i,a in enumerate(skills):
+			cnt[a]=i
+		if k>len(skills):
+			return cnt[max(skills)]
+		pre=skills[0]
+		wins=0
+		pidx=0
+		for i  in range(1,len(skills)):
+			if skills[i]>pre:
+				if wins>=k:
+					return pidx
+				else:
+					pre=skills[i]
+					pidx=i
+					wins=0
+			wins+=1
+		return cnt[max(skills)]
+
+
+#test entry
+s=Solution()
+skills = [2,5,4]
+k = 3
+#skills = [4,2,6,3,9]k = 2
+print(s.findWinningPlayer(skills,k))

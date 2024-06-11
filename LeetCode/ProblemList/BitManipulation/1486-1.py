@@ -1,3 +1,4 @@
+#模拟
 class Solution:
 	def xorOperation(self, n: int, start: int) -> int:
 		ans=0

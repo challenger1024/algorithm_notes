@@ -1,0 +1,15 @@
+from functools import cache
+import bisect
+class Solution:
+	def maxTotalReward(self, reward) -> int:
+		reward.sort()
+		n=len(reward)
+		ans=0
+		def dfs(i,):
+
+#test entry
+s=Solution()
+#rewardValues = [1,1,3,3]
+#rewardValues = [1,6,4,3,2]
+rewardValues=[1,5,4]
+print(s.maxTotalReward(rewardValues))

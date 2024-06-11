@@ -1,0 +1,30 @@
+from collections import Counter
+class Solution:
+	def maximumLength(self, nums, k: int) -> int:
+		n=len(nums)
+		dp=[[1]*(k+1) for _ in range(n)]
+#		dp[0]=[1,0]
+		for i in range(1,n):
+			for j in range(i):
+				for x in range(k+1):
+					if nums[i]==nums[j]:
+						dp[i][x]=max(dp[j][x]+1,dp[i][x])
+					elif x<k:
+						dp[i][x+1]=max(dp[i][x+1],dp[j][x]+1)
+
+
+#		print(dp)
+		ret=0
+		for i in range(n):
+			for j in range(k+1):
+				ret=max(ret,dp[i][j])
+		return ret
+
+#test entry
+s=Solution()
+#nums = [1,2,1,1,3]k = 2
+#nums = [1,2,3,4,5,1]k = 0
+#nums=[29,30,30]k=0
+nums=[48,49,49,48,48]
+k=1
+print(s.maximumLength(nums,k))

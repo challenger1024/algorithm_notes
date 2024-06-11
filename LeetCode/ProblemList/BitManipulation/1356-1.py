@@ -1,3 +1,4 @@
+#二维数组排序后展开成一维数组
 class Solution:
 	def sortByBits(self, arr: List[int]) -> List[int]:
 		def flatten_list(nested_list):

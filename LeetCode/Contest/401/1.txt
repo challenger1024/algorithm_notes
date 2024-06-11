@@ -1,0 +1,21 @@
+class Solution:
+	def numberOfChild(self, n: int, k: int) -> int:
+		x=0
+		while True:
+			for i in range(1,n):
+				x+=1
+				if x==k:
+					return i
+			for i in range(n-2,-1,-1):
+				x+=1
+				if x==k:
+					return i
+		return 0
+
+#test entry
+s=Solution()
+#n = 4k = 2
+#n = 5k = 6
+n = 3
+k = 5
+print(s.numberOfChild(n,k))
