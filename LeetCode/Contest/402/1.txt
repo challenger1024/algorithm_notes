@@ -1,0 +1,21 @@
+from collections import Counter
+class Solution:
+	def countCompleteDayPairs(self, hours) -> int:
+		ans=0
+		cnt=Counter()
+		for h in hours:
+			if h%24==0:
+				ans+=cnt[0]
+			elif (24-h%24) in cnt:
+				ans+=cnt[(24-h%24)]
+			cnt[h%24]+=1
+#		print(cnt)
+		return ans
+
+
+#test entry
+s=Solution()
+#hours = [72,48,24,3]
+
+hours = [12,12,30,24,24]
+print(s.countCompleteDayPairs(hours))

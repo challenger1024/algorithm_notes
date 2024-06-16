@@ -1,3 +1,4 @@
+#当最长非严格递增子序列做
 class Solution:
 	def minimumOperations(self, nums: List[int]) -> int:
 		n=len(nums)

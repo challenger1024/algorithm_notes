@@ -1,0 +1,24 @@
+from collections import Counter
+from functools import cache
+import bisect
+class Solution:
+	def maximumTotalDamage(self, power) -> int:
+		s=list(set(power))
+		s.sort()
+		cnt=Counter(power)
+		@cache
+		def dfs(i):
+			if i>=len(s):
+				return 0
+			if i>0 and s[i]!=s[i-1]+1 and s[i]!=s[i-1]+2:
+				return max(dfs(i+1),dfs(i+1)+s[i]*cnt[s[i]])
+			return dfs(i+1) if i>0 else dfs(i)
+		ans= dfs(0)
+		dfs.cache_clear()
+		return ans
+
+#test entry
+s=Solution()
+#power = [7,1,6,6]
+power=[6,3,8,2]
+print(s.maximumTotalDamage(power))

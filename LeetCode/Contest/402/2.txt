@@ -1,0 +1,7 @@
+MOD=10**9+7
+
+
+#test entry
+s=Solution()
+
+print(s.valueAfterKSeconds(n=4,k=5))
