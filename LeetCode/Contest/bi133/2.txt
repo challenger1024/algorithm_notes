@@ -1,0 +1,6 @@
+
+
+#test entry
+s=Solution()
+
+print(s.)
