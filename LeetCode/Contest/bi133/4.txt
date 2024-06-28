@@ -1,5 +1,0 @@
-from collections import Counter
-class Solution:
-	def maximumLength(self, nums, k: int) -> int:
-		n=len(nums)
-		

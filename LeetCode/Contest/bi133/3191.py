@@ -1,5 +1,6 @@
 class Solution:
-	def minKBitFlips(self, nums: List[int], k=3) -> int:
+	def minOperations(self, nums: List[int]) -> int:
+		k=3
 		n=len(nums)
 		ans=0
 		status=0

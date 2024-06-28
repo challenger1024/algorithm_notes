@@ -1,6 +1,0 @@
-
-
-#test entry
-so=Solution()
-
-print(so.)
