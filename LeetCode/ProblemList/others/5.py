@@ -1,4 +1,4 @@
-#O(N)时间复杂度求最长回文子串
+#马拉车算法O(N)时间复杂度求最长回文子串
 class Solution:
 	def extend(self,s,left,right):
 		n=len(s)
@@ -8,13 +8,13 @@ class Solution:
 		return (right-left-2)//2
 	def longestPalindrome(self, s: str) -> str:
 		s='#'+'#'.join(s)+'#'
-		arms=[]
+		arms=[]#存储臂长的数组
 		start,end=0,-1
-		right=-1
-		j=-1
+		right=-1#上一个回文串的右端点
+		j=-1#上一个回文串的中心
 		for i in range(len(s)):
 			if right>=i:
-				a=2*j-i
+				a=2*j-i#找到上一个回文串的左端点
 				min_a=min(arms[a],right-i)
 				arm=self.extend(s,i-min_a,i+min_a)
 			else:
@@ -32,7 +32,7 @@ class Solution:
 '''
 使用Manacher算法找最长的回文字符串
 拿到一个字符串
-1. 将字符串长度改成奇数，具体操作是在字符串的每两个字母之间和字符串两端加上一个字符，这里我用'#';
+1. 将字符串长度改成奇数，具体操作是在字符串的每两个字母之间和字符串两端加上一个字符，这里用'#';
 s='#'+'#'.join(s)+'#'
 2. 设一个数组arm,arm[i]表示以s[i]为中心，长度为2*length+1的回文字符串的length值;
 
