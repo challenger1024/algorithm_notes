@@ -1,17 +1,40 @@
-from functools import cache
 class Solution:
-	def maximumLength(self, nums, k: int) -> int:
-		@cache
-		def dfs(i,j):
-			if i<0:
-				return 0
-			return dfs(i-1,j)+1 if (j+nums[i])%k==j else dfs(i-1,j)
-		ans=-1
-		for a in range(k):
-			for j in range(len(nums)):
-				ans=max(dfs(j,a),ans)
-		return ans
+	def minimumCost(self, target: str, wd, costs) -> int:
+		trie={}#字典树的跟
+		for i,word in enumerate(wd):
+			cur=trie#每次拿到一个词都将指针指向跟部
+			for c in word:
+				if c not in cur:#避免重复添加同一个键
+					cur[c]={}
+				cur=cur[c]#指针指向下一层
+			if '#' in cur:
+				cur['#']=i if costs[i]<costs[cur['#']] else cur['#']#设置'#'作为结束本单词的标记
+			else:
+				cur['#']=i
+		n=len(target)
+		dp=[float('inf')]*(n+1)
+		dp[0]=0
+		cur=trie
+		i=k=0
+		while i<n:
+			j=i
+			while True:
+				if '#' in cur:
+					k=j if k==i else k
+					idx=cur['#']
+					dp[j]=min(dp[j],dp[i]+costs[idx])
+				if j>=n or target[j] not in cur:
+					cur=trie
+					break
+				cur=cur[target[j]]
+				j+=1
+			if k>i:i=k
+			else: break
+		return dp[-1] if dp[-1]!=float('inf') else -1
 
+#test entry
 s=Solution()
-nums=[1,5,9,2,8]
-print(s.maximumLength(nums,k=2))
+target="abcdef"
+words=["abdef","abc","d","def","ef"]
+costs=[100,1,1,10,5]
+print(s.minimumCost(target,words,costs))
