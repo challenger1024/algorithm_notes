@@ -1,0 +1,17 @@
+class Solution:
+    def canAliceWin(self, nums) -> bool:
+        nums.sort()
+        s=sum(nums)
+        one,two=0,0
+        for a in nums:
+            if a<10:
+                one+=a
+            elif a<100:
+                two+=a
+            else:
+                break
+        return one>(s-one) or two>(s-two)
+
+s=Solution()
+nums=[1,2,3,4,10]
+print(s.canAliceWin(nums))

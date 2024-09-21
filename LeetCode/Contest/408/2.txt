@@ -1,0 +1,37 @@
+import time
+import sys
+import os
+from math import sqrt,ceil
+
+class Solution:
+	def nonSpecialCount(self, l: int, r: int) -> int:
+		n=40000
+		k=0
+		ori=[True]*(n+1)
+		ori[1]=False
+		i=2
+		for i in range(2,n+1):
+			if ori[i]:
+				k+=1
+				j=i*i
+				for j in range(i+i,n+1,i):
+					ori[j]=False
+					j+=i
+			i+=1
+#		print(k)
+#		print(ori)
+		sl=ceil(sqrt(l))
+		sr=int(sqrt(r))
+		num=0
+		for i in range(sl,sr+1):
+			if ori[i]:
+				num+=1
+#		print(sl)
+#		print(sr)
+#		print(num)
+		return (r-l+1)-num
+
+
+
+s=Solution()
+print(s.nonSpecialCount(1,2))

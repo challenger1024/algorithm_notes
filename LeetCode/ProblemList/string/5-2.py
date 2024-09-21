@@ -1,4 +1,4 @@
-#求最长回文子串，时间复杂度O(N)
+#马拉车算法求最长回文子串，时间复杂度O(N)
 class Solution:
 	def extend(self,s,left,right):
 		n=len(s)
