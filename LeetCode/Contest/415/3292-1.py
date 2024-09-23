@@ -1,3 +1,5 @@
+#字符串哈希+二分查找+贪心
+from bisect import bisect_left
 from random import randint
 
 MOD = 1_070_777_777
@@ -24,4 +26,12 @@ class Solution:
 		cur_r=0
 		next_r=0
 		for i in range(n):
-			
+			check=lambda sz: sub_hash(i,i+sz+1) not in sets[sz]
+			sz=bisect_left(range(min(n-i,max_len)),True,key=check)
+			next_r=max(next_r,i+sz)#更新下一步能跳跃的位置，更远或保持原样
+			if i==cur_r:#以到达当前能到达的最远处，考察是否能跳到更远处
+				if i==next_r:#无策略可以使我们走到最后
+					return -1
+				cur_r=next_r
+				ans+=1
+		return ans
